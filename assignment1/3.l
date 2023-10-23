@@ -17,7 +17,6 @@ int line_number = 1;
 "<<"|">>" {printf("Shift Operator: %s\n", yytext);}
 "++"|"--" {printf("Increment/Decrement Operator: %s\n", yytext);}
 "&"|"*"|"->" {printf("Pointer Operator: %s\n", yytext);}
-"sizeof" {printf("Sizeof Operator: %s\n", yytext);}
 "[" {printf("Left Square Bracket: %s\n", yytext);}
 "]" {printf("Right Square Bracket: %s\n", yytext);}
 "(" {printf("Left Parenthesis: %s\n", yytext);}
@@ -32,6 +31,7 @@ int line_number = 1;
 "#include".* {printf("Preprocessor Directive: %s\n", yytext);}
 [ \t]     ;  // skip whitespace
 \n         { line_number++; }
+[0-9][a-zA-Z_][a-zA-Z0-9_]*          { printf("Error: Unrecognized token %s at line %d\n", yytext, line_number); }
 .          { printf("Error: Unrecognized token %s at line %d\n", yytext, line_number); }
 %%
 

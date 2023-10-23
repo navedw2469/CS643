@@ -16,7 +16,6 @@
 "<<"|">>" {printf("Shift Operator: %s\n", yytext);}
 "++"|"--" {printf("Increment/Decrement Operator: %s\n", yytext);}
 "&"|"*"|"->" {printf("Pointer Operator: %s\n", yytext);}
-"sizeof" {printf("Sizeof Operator: %s\n", yytext);}
 "[" {printf("Left Square Bracket: %s\n", yytext);}
 "]" {printf("Right Square Bracket: %s\n", yytext);}
 "(" {printf("Left Parenthesis: %s\n", yytext);}
@@ -26,7 +25,8 @@
 "," {printf("Comma: %s\n", yytext);}
 ";" {printf("Semicolon: %s\n", yytext);}
 [ \t\n]     ;  // skip whitespace and newlines
-.           {printf("Unknown token: %s\n", yytext);}
+[0-9][a-zA-Z_][a-zA-Z0-9_]*          {printf("Unknown token: %s\n", yytext);}
+.          {printf("Unknown token: %s\n", yytext);}
 %%
 
 int main(int argc, char* argv[]) {
